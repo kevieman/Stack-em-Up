@@ -11,28 +11,35 @@ namespace Stack_m_up
         ArrayList playfields;
         int playFieldAmount;
 
-        double windowHeight, windowWidth;
-        Texture2D image;
 
         public GameManager( int playFieldAmount )
         {
             this.playFieldAmount = playFieldAmount;
             playfields = new ArrayList();
+
+            playfields.Clear();
+
+            for (int i = 0; i < playFieldAmount; ++i)
+            {
+                PlayField playfield = new PlayField(playFieldAmount, i);
+                playfields.Add(playfield);
+            }
         }
         
         public void Initialize()
         {
-            var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
-            windowHeight = applicationView.VisibleBounds.Height;
-            windowWidth = applicationView.VisibleBounds.Width;
-
+            foreach (PlayField playfield in playfields)
+            {
+                playfield.Initialize();
+            }
         }
 
         public void LoadContent( ContentManager content )
         {
-            createPlayFields(playFieldAmount);
-
-            image = content.Load<Texture2D>("logo");
+            foreach (PlayField playfield in playfields)
+            {
+                playfield.LoadContent( content );
+            }
         }
 
         public void UnloadContent()
@@ -41,46 +48,17 @@ namespace Stack_m_up
 
         public void Update(GameTime gameTime)
         {
-            var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
-            if (applicationView.VisibleBounds.Height != windowHeight || applicationView.VisibleBounds.Height != windowWidth)
+            foreach (PlayField playfield in playfields)
             {
-                windowHeight = applicationView.VisibleBounds.Height;
-                windowWidth = applicationView.VisibleBounds.Width;
-
-                createPlayFields(playFieldAmount);
+                playfield.Update(gameTime);
             }
         }
 
         public void Draw(GameTime gameTime, GraphicsDeviceManager graphics, SpriteBatch spriteBatch)
         {
-            Viewport original = graphics.GraphicsDevice.Viewport;
-
-            foreach (Viewport view in playfields)
+            foreach (PlayField playfield in playfields)
             {
-                graphics.GraphicsDevice.Viewport = view;
-                spriteBatch.Begin();
-                spriteBatch.Draw(image, new Vector2(0, 200), Color.AliceBlue);
-                spriteBatch.End();
-            }
-
-            graphics.GraphicsDevice.Viewport = original;
-        }
-
-        private void createPlayFields( int amount )
-        {
-            playfields.Clear();
-
-            for (int i = 0; i < amount; ++i)
-            {
-                Viewport view = new Viewport();
-                view.X = Convert.ToInt32((windowWidth / amount) * i);
-                view.Y = 0;
-                view.Width = Convert.ToInt32(windowWidth / amount);
-                view.Height = Convert.ToInt32(windowHeight);
-                view.MinDepth = 0;
-                view.MaxDepth = 1;
-
-                playfields.Add(view);
+                playfield.Draw(gameTime, graphics, spriteBatch);
             }
         }
 

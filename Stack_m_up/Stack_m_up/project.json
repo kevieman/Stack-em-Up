@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "FarseerPhysics.Portable": "3.5.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.5"
   },
   "frameworks": {

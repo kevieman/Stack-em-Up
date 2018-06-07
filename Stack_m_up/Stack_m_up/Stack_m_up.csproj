@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{914969bc-5092-42aa-a83f-c01cc663bac1}</ProjectGuid>
+    <ProjectGuid>{97d3d962-976e-4686-913f-b56e72977472}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMUp</RootNamespace>
-    <AssemblyName>StackMUp</AssemblyName>
+    <RootNamespace>Stack_m_up</RootNamespace>
+    <AssemblyName>Stack_m_up</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
 	<TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -19,7 +19,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     
-    <PackageCertificateKeyFile>StackMUp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Stack_m_up_TemporaryKey.pfx</PackageCertificateKeyFile>
     
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
   </PropertyGroup>
@@ -116,7 +116,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     
-    <None Include="StackMUp_TemporaryKey.pfx" />
+    <None Include="Stack_m_up_TemporaryKey.pfx" />
     
   </ItemGroup>
   <ItemGroup>

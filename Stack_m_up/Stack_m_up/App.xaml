@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="StackMUp.App"
+    x:Class="Stack_m_up.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StackMUp"
+    xmlns:local="using:Stack_m_up"
     RequestedTheme="Light">
 
 </Application>

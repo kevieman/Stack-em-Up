@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace StackMUp
+namespace Stack_m_up
 {
     /// <summary>
     /// This is the main type for your game.

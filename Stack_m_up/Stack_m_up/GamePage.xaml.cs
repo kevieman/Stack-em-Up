@@ -22,15 +22,105 @@ namespace Stack_m_up
     /// </summary>
     public sealed partial class GamePage : Page
     {
-		readonly Game1 _game;
+        readonly Game1 _game;
 
-		public GamePage()
+        public GamePage()
         {
             this.InitializeComponent();
 
-			// Create the game.
-			var launchArguments = string.Empty;
+            // Create the game.
+            var launchArguments = string.Empty;
             _game = MonoGame.Framework.XamlGame<Game1>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
+        }
+
+        private void Start_Game_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame_Button.Visibility = Visibility.Collapsed;
+            Settings_Button.Visibility = Visibility.Collapsed;
+            Credits_Button.Visibility = Visibility.Collapsed;
+            Quit_Button.Visibility = Visibility.Collapsed;
+
+            Back_Button.Visibility = Visibility.Visible;
+
+            Start_Survival_Button.Visibility = Visibility.Visible;
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame_Button.Visibility = Visibility.Collapsed;
+            Settings_Button.Visibility = Visibility.Collapsed;
+            Credits_Button.Visibility = Visibility.Collapsed;
+            Quit_Button.Visibility = Visibility.Collapsed;
+
+            Back_Button.Visibility = Visibility.Visible;
+            Main_Volume_Slider.Visibility = Visibility.Visible;
+            Music_Volume_Slider.Visibility = Visibility.Visible;
+            SFX_Volume_Slider.Visibility = Visibility.Visible;
+            Main_Volume_Text.Visibility = Visibility.Visible;
+            Music_Volume_Text.Visibility = Visibility.Visible;
+            SFX_Volume_Text.Visibility = Visibility.Visible;
+
+        }
+
+        private void Credits_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame_Button.Visibility = Visibility.Visible;
+            Settings_Button.Visibility = Visibility.Visible;
+            Credits_Button.Visibility = Visibility.Visible;
+            Quit_Button.Visibility = Visibility.Visible;
+
+            Back_Button.Visibility = Visibility.Collapsed;
+
+            Main_Volume_Slider.Visibility = Visibility.Collapsed;
+            Music_Volume_Slider.Visibility = Visibility.Collapsed;
+            SFX_Volume_Slider.Visibility = Visibility.Collapsed;
+            Main_Volume_Text.Visibility = Visibility.Collapsed;
+            Music_Volume_Text.Visibility = Visibility.Collapsed;
+            SFX_Volume_Text.Visibility = Visibility.Collapsed;
+
+            Start_Survival_Button.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void Start_Survival_Click(object sender, RoutedEventArgs e)
+        {
+            StartGame_Button.Visibility = Visibility.Collapsed;
+            Settings_Button.Visibility = Visibility.Collapsed;
+            Credits_Button.Visibility = Visibility.Collapsed;
+            Quit_Button.Visibility = Visibility.Collapsed;
+
+            Back_Button.Visibility = Visibility.Collapsed;
+
+            Main_Volume_Slider.Visibility = Visibility.Collapsed;
+            Music_Volume_Slider.Visibility = Visibility.Collapsed;
+            SFX_Volume_Slider.Visibility = Visibility.Collapsed;
+            Main_Volume_Text.Visibility = Visibility.Collapsed;
+            Music_Volume_Text.Visibility = Visibility.Collapsed;
+            SFX_Volume_Text.Visibility = Visibility.Collapsed;
+
+            Start_Survival_Button.Visibility = Visibility.Collapsed;
+
+            Background.Visibility = Visibility.Collapsed;
+            Logo.Visibility = Visibility.Collapsed;
+
+            // Start game
+        }
+
+
+
+        private void Quit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

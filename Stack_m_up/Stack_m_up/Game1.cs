@@ -23,7 +23,7 @@ namespace Stack_m_up
         protected override void Initialize()
         {
             game.Initialize();
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
         

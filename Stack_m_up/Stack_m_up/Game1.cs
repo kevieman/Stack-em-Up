@@ -17,6 +17,7 @@ namespace Stack_m_up
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             game = new GameManager( 4 );
+            IsMouseVisible = true;
         }
         
         protected override void Initialize()
@@ -51,5 +52,6 @@ namespace Stack_m_up
 
             base.Draw(gameTime);
         }
+
     }
 }

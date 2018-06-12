@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Stack_m_up
 {
@@ -25,7 +26,11 @@ namespace Stack_m_up
         List<DrawablePhysicsObject> crateList;
         DrawablePhysicsObject floor;
         KeyboardState prevKeyboardState;
+        MouseState prevMouseState;
         Random random;
+
+        Vector2 mousePosition;
+        SpriteFont font;
 
         public PlayField( int amount, int place )
         {
@@ -45,7 +50,7 @@ namespace Stack_m_up
         {
             createView( (windowWidth / amount) * place, 0, windowHeight, windowWidth / amount );
 
-            world = new World(new Vector2(0, 9.8f));
+            world = new World(new Vector2(0, 0.5f));
 
             Vector2 size = new Vector2(50, 50);
             body = BodyFactory.CreateRectangle(world, size.X * pixelToUnit, size.Y * pixelToUnit, 1);
@@ -54,13 +59,15 @@ namespace Stack_m_up
 
             block = content.Load<Texture2D>("logo");
 
-            random = new Random();
+            random = new Random(place);
 
             floor = new DrawablePhysicsObject(world, content.Load<Texture2D>("floor"), new Vector2(view.Width, 100.0f), 1000);
             floor.Position = new Vector2(view.Width / 2.0f, view.Height - 50);
             floor.body.BodyType = BodyType.Static;
             crateList = new List<DrawablePhysicsObject>();
             prevKeyboardState = Keyboard.GetState();
+
+            font = content.Load<SpriteFont>("font");
         }
 
         public void UnloadContent()
@@ -81,6 +88,27 @@ namespace Stack_m_up
 
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
+            MouseState mouseState = Mouse.GetState();
+            mousePosition = mouseState.Position.ToVector2();
+            if (mouseState.LeftButton != prevMouseState.LeftButton)
+            {
+                foreach (DrawablePhysicsObject obj in crateList)
+                {
+                    // TODO: only check inside this viewport ( between the windowWidth * place and windowWidth * (place + 1) )
+                    if( (mouseState.Position.ToVector2().X >= obj.Position.X && mouseState.Position.ToVector2().X <= (obj.Position.X + obj.Size.X)) &&
+                        (mouseState.Position.ToVector2().Y >= obj.Position.Y && mouseState.Position.ToVector2().Y <= (obj.Position.Y + obj.Size.Y)))
+                    {
+                        Debug.WriteLine("clicked");
+                        if (obj.body.IgnoreGravity)
+                            obj.body.IgnoreGravity = false;
+                        else
+                            obj.body.IgnoreGravity = true; // makes the block slower
+                    }
+                }
+
+            }
+            prevMouseState = mouseState;
+
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Space) && !prevKeyboardState.IsKeyDown(Keys.Space))
             {
@@ -99,7 +127,6 @@ namespace Stack_m_up
 
             Vector2 position = body.Position * unitToPixel;
             Vector2 scale = new Vector2(50 / (float)block.Width, 50 / (float)block.Height);
-            spriteBatch.Draw(block, position, null, Color.White, body.Rotation, new Vector2(block.Width / 2.0f, block.Height / 2.0f), scale, SpriteEffects.None, 0);
 
             foreach (DrawablePhysicsObject crate in crateList)
             {
@@ -107,6 +134,7 @@ namespace Stack_m_up
             }
 
             floor.Draw(spriteBatch);
+            spriteBatch.DrawString(font, mousePosition.ToString(), new Vector2(10, windowHeight - 20), Color.Black);
             
             spriteBatch.End();
 

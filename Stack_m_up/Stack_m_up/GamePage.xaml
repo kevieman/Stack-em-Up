@@ -230,32 +230,7 @@
 
     <SwapChainPanel x:Name="swapChainPanel" >
         <Image x:Name="Background" Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/solidgrey.jpg" Tag="sfvcv" RenderTransformOrigin="0.5,0.5"/>
-        <Image x:Name="Logo" HorizontalAlignment="Right" Height="267" VerticalAlignment="Center" Width="808" Margin="0,-720,60,0" Source="Assets/StackMUp.png"/>
 
-
-        <Button x:Name="StartGame_Button"  Height="240" Width="490" Click="Start_Game_Click" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,-720,0,0" Style="{StaticResource CustomButton}">
-            <Image x:Name="Start_Game" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="478" Source="Assets/mockup_startGame.png"/>
-        </Button>
-
-        <Button x:Name="Settings_Button"  Height="240" Width="490" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,-240,0,0" Style="{StaticResource CustomButton}">
-            <Image x:Name="Settings" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="478" Source="Assets/mockup_settings.png" Margin="2,4,-10,-5"/>
-        </Button>
-
-        <Button x:Name="Credits_Button"  Height="240" Width="490" Click="Credits_Click" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,240,0,0" Style="{StaticResource CustomButton}">
-            <Image x:Name="Credits" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="478" Source="Assets/mockup_credits.png"/>
-        </Button>
-
-        <Button x:Name="Start_Survival_Button" Visibility="Collapsed"  Height="240" Width="490" Click="Start_Survival_Click" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,240,0,0" Style="{StaticResource CustomButton}">
-            <Image x:Name="Credits1" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="478" Source="Assets/mockup_startSurvival.png"/>
-        </Button>
-
-        <Button x:Name="Quit_Button"  Height="240" Width="490" Click="Quit_Click" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,720,0,0" Style="{StaticResource CustomButton}">
-            <Image x:Name="Quit" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="478" Source="Assets/mockup_quit.png"/>
-        </Button>
-
-        <Button x:Name="Back_Button"  Height="240" Width="490" Click="Back_Click"  Visibility="Collapsed" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,720,0,0" Style="{StaticResource CustomButton}">
-            <Image x:Name="Quit1" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="478" Source="Assets/mockup_Back.png"/>
-        </Button>
         <Slider x:Name="Main_Volume_Slider" Visibility="Collapsed" HorizontalAlignment="Right" Width="808" Margin="0,456,300,0" Tag="sfvcv" RenderTransformOrigin="0.5,0.5" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black" VerticalAlignment="Top" Style="{StaticResource CustomSliderStyle}" />
         <Slider x:Name="Music_Volume_Slider" Visibility="Collapsed" HorizontalAlignment="Right" Width="808" Margin="0,656,300,0" Tag="sfvcv" RenderTransformOrigin="0.5,0.5" Foreground="White" FocusVisualPrimaryBrush="Black" VerticalAlignment="Top" Style="{StaticResource CustomSliderStyle}" />
         <Slider x:Name="SFX_Volume_Slider" Visibility="Collapsed" HorizontalAlignment="Right" Width="808" Margin="0,856,300,0" Tag="sfvcv" RenderTransformOrigin="0.5,0.5" Foreground="White" FocusVisualPrimaryBrush="Black" VerticalAlignment="Top" Style="{StaticResource CustomSliderStyle}" />
@@ -263,6 +238,47 @@
         <TextBlock x:Name="Music_Volume_Text" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,632,590,0" TextWrapping="Wrap" Text="Music Volume" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
         <TextBlock x:Name="SFX_Volume_Text" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,832,610,0" TextWrapping="Wrap" Text="SFX Volume" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
 
-    </SwapChainPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width=".1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".1*"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="Logo" Grid.Column="3" Grid.Row="1" Height="AUTO" Width="AUTO" Source="Assets/StackMUp.png"/>
 
+            <Button x:Name="StartGame_Button"  Grid.Column="1" Grid.Row="1" Height="AUTO" Width="AUTO" Click="Start_Game_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Start_Game" Height="AUTO" Width="AUTO" Source="Assets/mockup_startGame.png"/>
+            </Button>
+
+            <Button x:Name="Settings_Button"  Grid.Column="1" Grid.Row="2" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Settings" Height="AUTO" Width="AUTO" Source="Assets/mockup_settings.png"/>
+            </Button>
+
+            <Button x:Name="Credits_Button"  Grid.Column="1" Grid.Row="3" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Credits" Height="AUTO" Width="AUTO" Source="Assets/mockup_credits.png"/>
+            </Button>
+
+            <Button x:Name="Start_Survival_Button" Visibility="Collapsed" Grid.Column="1" Grid.Row="3" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Credits1" Height="AUTO" Width="AUTO" Source="Assets/mockup_startSurvival.png"/>
+            </Button>
+
+            <Button x:Name="Quit_Button"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Quit" Height="AUTO" Width="AUTO" Source="Assets/mockup_quit.png"/>
+            </Button>
+
+            <Button x:Name="Back_Button" Visibility="Collapsed"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Quit1" Height="AUTO" Width="AUTO" Source="Assets/mockup_Back.png"/>
+            </Button>
+        </Grid>
+    </SwapChainPanel>
 </Page>

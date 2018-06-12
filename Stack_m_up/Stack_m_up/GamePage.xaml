@@ -231,12 +231,11 @@
     <SwapChainPanel x:Name="swapChainPanel" >
         <Image x:Name="Background" Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Assets/solidgrey.jpg" Tag="sfvcv" RenderTransformOrigin="0.5,0.5"/>
 
-        <Slider x:Name="Main_Volume_Slider" Visibility="Collapsed" HorizontalAlignment="Right" Width="808" Margin="0,456,300,0" Tag="sfvcv" RenderTransformOrigin="0.5,0.5" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black" VerticalAlignment="Top" Style="{StaticResource CustomSliderStyle}" />
-        <Slider x:Name="Music_Volume_Slider" Visibility="Collapsed" HorizontalAlignment="Right" Width="808" Margin="0,656,300,0" Tag="sfvcv" RenderTransformOrigin="0.5,0.5" Foreground="White" FocusVisualPrimaryBrush="Black" VerticalAlignment="Top" Style="{StaticResource CustomSliderStyle}" />
-        <Slider x:Name="SFX_Volume_Slider" Visibility="Collapsed" HorizontalAlignment="Right" Width="808" Margin="0,856,300,0" Tag="sfvcv" RenderTransformOrigin="0.5,0.5" Foreground="White" FocusVisualPrimaryBrush="Black" VerticalAlignment="Top" Style="{StaticResource CustomSliderStyle}" />
-        <TextBlock x:Name="Main_Volume_Text" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,432,600,0" TextWrapping="Wrap" Text="Main Volume" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
-        <TextBlock x:Name="Music_Volume_Text" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,632,590,0" TextWrapping="Wrap" Text="Music Volume" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
-        <TextBlock x:Name="SFX_Volume_Text" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,832,610,0" TextWrapping="Wrap" Text="SFX Volume" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
+       
+        
+        
+       
+        
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -254,6 +253,42 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height=".1*"/>
             </Grid.RowDefinitions>
+
+            <Grid Grid.Column="3" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid Grid.Column="3" Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid Grid.Column="3" Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height=".5*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <TextBlock x:Name="Main_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Main Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
+            <Slider x:Name="Main_Volume_Slider" Visibility="Collapsed"  Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" />
+
+            <TextBlock x:Name="Music_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Music Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
+            <Slider x:Name="Music_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" />
+
+            <TextBlock x:Name="SFX_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="SFX Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
+            <Slider x:Name="SFX_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" />
+
+
             <Image x:Name="Logo" Grid.Column="3" Grid.Row="1" Height="AUTO" Width="AUTO" Source="Assets/StackMUp.png"/>
 
             <Button x:Name="StartGame_Button"  Grid.Column="1" Grid.Row="1" Height="AUTO" Width="AUTO" Click="Start_Game_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
@@ -264,19 +299,19 @@
                 <Image x:Name="Settings" Height="AUTO" Width="AUTO" Source="Assets/mockup_settings.png"/>
             </Button>
 
-            <Button x:Name="Credits_Button"  Grid.Column="1" Grid.Row="3" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+            <Button x:Name="Credits_Button"  Grid.Column="1" Grid.Row="3" Height="AUTO" Width="AUTO" Click="Credits_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
                 <Image x:Name="Credits" Height="AUTO" Width="AUTO" Source="Assets/mockup_credits.png"/>
             </Button>
 
-            <Button x:Name="Start_Survival_Button" Visibility="Collapsed" Grid.Column="1" Grid.Row="3" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+            <Button x:Name="Start_Survival_Button" Visibility="Collapsed" Grid.Column="1" Grid.Row="3" Height="AUTO" Width="AUTO" Click="Start_Survival_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
                 <Image x:Name="Credits1" Height="AUTO" Width="AUTO" Source="Assets/mockup_startSurvival.png"/>
             </Button>
 
-            <Button x:Name="Quit_Button"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+            <Button x:Name="Quit_Button"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Quit_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
                 <Image x:Name="Quit" Height="AUTO" Width="AUTO" Source="Assets/mockup_quit.png"/>
             </Button>
 
-            <Button x:Name="Back_Button" Visibility="Collapsed"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Settings_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+            <Button x:Name="Back_Button" Visibility="Collapsed"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Back_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
                 <Image x:Name="Quit1" Height="AUTO" Width="AUTO" Source="Assets/mockup_Back.png"/>
             </Button>
         </Grid>

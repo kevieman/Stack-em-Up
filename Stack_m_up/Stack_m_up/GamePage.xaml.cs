@@ -23,6 +23,7 @@ namespace Stack_m_up
     public sealed partial class GamePage : Page
     {
         readonly Game1 _game;
+        int x = 0;
 
         public GamePage()
         {
@@ -31,6 +32,10 @@ namespace Stack_m_up
             // Create the game.
             var launchArguments = string.Empty;
             _game = MonoGame.Framework.XamlGame<Game1>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
+
+            Main_Volume_Slider.Value = 100;
+            Music_Volume_Slider.Value = 100;
+            SFX_Volume_Slider.Value = 100;
         }
 
         private void Start_Game_Click(object sender, RoutedEventArgs e)
@@ -43,6 +48,8 @@ namespace Stack_m_up
             Back_Button.Visibility = Visibility.Visible;
 
             Start_Survival_Button.Visibility = Visibility.Visible;
+
+            _game.Click();
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
@@ -60,6 +67,7 @@ namespace Stack_m_up
             Music_Volume_Text.Visibility = Visibility.Visible;
             SFX_Volume_Text.Visibility = Visibility.Visible;
 
+            _game.Click();
         }
 
         private void Credits_Click(object sender, RoutedEventArgs e)
@@ -85,6 +93,7 @@ namespace Stack_m_up
 
             Start_Survival_Button.Visibility = Visibility.Collapsed;
 
+            _game.Click();
         }
 
         private void Start_Survival_Click(object sender, RoutedEventArgs e)
@@ -108,6 +117,7 @@ namespace Stack_m_up
             Background.Visibility = Visibility.Collapsed;
             Logo.Visibility = Visibility.Collapsed;
 
+            _game.Click();
             // Start game
         }
 
@@ -116,11 +126,59 @@ namespace Stack_m_up
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+            _game.Click();
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void changeMasterVolume(object sender, RoutedEventArgs e)
+        {
+            float percentage = (float)(Main_Volume_Slider.Value / 100);
+            _game.updateMasterVolume(percentage);   // Update the master Volume
+            
+            if(x == 2)
+            {
+                _game.sliderClick(percentage);
+                x = 0;
+            } else
+            {
+                x++;
+            }
+        }
+
+        private void changeSfxVolume(object sender, RoutedEventArgs e)
+        {
+            float percentage = (float)(SFX_Volume_Slider.Value / 100);
+            _game.updateSfxVolume(percentage);   // Update the SFX Volume
+
+            if (x == 2)
+            {
+                _game.sliderClick(percentage);
+                x = 0;
+            }
+            else
+            {
+                x++;
+            }
+        }
+
+        private void changeMusicVolume(object sender, RoutedEventArgs e)
+        {
+            float percentage = (float)(Music_Volume_Slider.Value / 100);
+            _game.updateMusicVolume(percentage);   // Update the music Volume
+
+            if (x == 2)
+            {
+                _game.sliderClickMusic(percentage);
+                x = 0;
+            }
+            else
+            {
+                x++;
+            }
         }
     }
 }

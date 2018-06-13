@@ -280,13 +280,13 @@
             </Grid>
 
             <TextBlock x:Name="Main_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Main Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
-            <Slider x:Name="Main_Volume_Slider" Visibility="Collapsed"  Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" />
+            <Slider x:Name="Main_Volume_Slider" Visibility="Collapsed"  Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" ValueChanged="changeMasterVolume"/>
 
             <TextBlock x:Name="Music_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Music Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
-            <Slider x:Name="Music_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" />
+            <Slider x:Name="Music_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" ValueChanged="changeMusicVolume"/>
 
             <TextBlock x:Name="SFX_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="SFX Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
-            <Slider x:Name="SFX_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" />
+            <Slider x:Name="SFX_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" ValueChanged="changeSfxVolume"/>
 
 
             <Image x:Name="Logo" Grid.Column="3" Grid.Row="1" Height="AUTO" Width="AUTO" Source="Assets/StackMUp.png"/>

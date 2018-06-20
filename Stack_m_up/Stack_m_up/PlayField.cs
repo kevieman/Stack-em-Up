@@ -75,7 +75,7 @@ namespace Stack_m_up
         {
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, int rand)
         {
             var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             if (applicationView.VisibleBounds.Height != windowHeight || applicationView.VisibleBounds.Height != windowWidth)
@@ -113,7 +113,7 @@ namespace Stack_m_up
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Space) && !prevKeyboardState.IsKeyDown(Keys.Space))
             {
-                SpawnBlock();
+                SpawnBlock(rand);
             }
 
             prevKeyboardState = keyboardState;
@@ -153,10 +153,10 @@ namespace Stack_m_up
             view.MaxDepth = 1;
         }
 
-        private void SpawnBlock()
+        private void SpawnBlock(int rand)
         {
             DrawablePhysicsObject obj;
-            if(random.Next(0, 2) == 0)
+            if(rand == 0)
             {
                 obj = new DrawablePhysicsObject(world, block, new Vector2(50.0f, 50.0f), 0.1f);
             }
@@ -165,6 +165,8 @@ namespace Stack_m_up
                 obj = new DrawablePhysicsObject(world, block2, new Vector2(125.0f, 25.0f), 0.1f);
             }
             obj.Position = new Vector2(random.Next(50, view.Width - 50), 1);
+            obj.body.Friction = 1;
+            obj.body.Restitution = -0.2f;
 
             crateList.Add(obj);
         }

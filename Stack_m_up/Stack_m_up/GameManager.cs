@@ -10,6 +10,7 @@ namespace Stack_m_up
     {
         ArrayList playfields;
         int playFieldAmount;
+        Random random = new Random();
 
 
         public GameManager( int playFieldAmount )
@@ -48,9 +49,10 @@ namespace Stack_m_up
 
         public void Update(GameTime gameTime)
         {
+            int rand = random.Next(0, 2);
             foreach (PlayField playfield in playfields)
             {
-                playfield.Update(gameTime);
+                playfield.Update(gameTime, rand);
             }
         }
 

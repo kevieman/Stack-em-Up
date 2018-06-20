@@ -100,6 +100,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AudioManager.cs" />
     <Compile Include="DrawablePhysicsObject.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="GamePage.xaml.cs">

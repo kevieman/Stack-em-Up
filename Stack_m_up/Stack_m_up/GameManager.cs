@@ -12,7 +12,7 @@ namespace Stack_m_up
         ArrayList playfields;
         int playFieldAmount;
         Random random = new Random();
-        const float delay = 12;
+        const float delay = 10;
         float remainingdelay = delay;
 
 

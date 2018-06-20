@@ -183,7 +183,9 @@ namespace Stack_m_up
             {
                 obj = new DrawablePhysicsObject(world, block2, new Vector2(125.0f, 25.0f), 0.1f);
             }
+            Random randomRotation = new Random();
             obj.Position = new Vector2(random.Next(50, view.Width - 50), 1);
+            obj.body.Rotation = randomRotation.Next(0, 360);
             obj.body.Friction = 1;
             obj.body.Restitution = -0.2f;
 

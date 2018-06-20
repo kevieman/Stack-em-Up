@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
+using System.Threading;
 
 namespace Stack_m_up
 {
@@ -11,6 +12,8 @@ namespace Stack_m_up
         ArrayList playfields;
         int playFieldAmount;
         Random random = new Random();
+        const float delay = 12;
+        float remainingdelay = delay;
 
 
         public GameManager( int playFieldAmount )
@@ -49,10 +52,18 @@ namespace Stack_m_up
 
         public void Update(GameTime gameTime)
         {
-            int rand = random.Next(0, 2);
+            var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            remainingdelay -= timer;
+            if (remainingdelay <= 0)
+            {
+                AddBlock();
+                remainingdelay = delay;
+            }
+
+
             foreach (PlayField playfield in playfields)
             {
-                playfield.Update(gameTime, rand);
+                playfield.Update(gameTime);
             }
         }
 
@@ -61,6 +72,15 @@ namespace Stack_m_up
             foreach (PlayField playfield in playfields)
             {
                 playfield.Draw(gameTime, graphics, spriteBatch);
+            }
+        }
+
+        private void AddBlock()
+        {
+            int rand = random.Next(0, 2);
+            foreach (PlayField playfield in playfields)
+            {
+                playfield.AddBlock( rand );
             }
         }
 

@@ -85,7 +85,7 @@ namespace Stack_m_up
         {
         }
 
-        public void Update(GameTime gameTime, int rand)
+        public void Update(GameTime gameTime)
         {
             var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             if (applicationView.VisibleBounds.Height != windowHeight || applicationView.VisibleBounds.Height != windowWidth)
@@ -134,18 +134,9 @@ namespace Stack_m_up
                 }
                 else if (rightSideClicked && leftSideClicked)
                 {
-                    currentBlock.body.Rotation += 5;
+                    currentBlock.body.Rotation += 1;
                 }
             }
-                
-
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Space) && !prevKeyboardState.IsKeyDown(Keys.Space))
-            {
-                SpawnBlock(rand);
-            }
-            
-            prevKeyboardState = keyboardState;
         }
 
         public void Draw(GameTime gameTime, GraphicsDeviceManager graphics, SpriteBatch spriteBatch)
@@ -182,7 +173,7 @@ namespace Stack_m_up
             view.MaxDepth = 1;
         }
 
-        private void SpawnBlock(int rand)
+        public void AddBlock(int rand)
         {
             DrawablePhysicsObject obj;
             if(rand == 0)

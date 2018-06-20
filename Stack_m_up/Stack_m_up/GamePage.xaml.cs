@@ -132,6 +132,7 @@ namespace Stack_m_up
             Logo.Visibility = Visibility.Collapsed;
             
             _game.Click();
+            _game.startGame( Convert.ToInt32(Player_Amount_Slider.Value) );
             // Start game
         }
 

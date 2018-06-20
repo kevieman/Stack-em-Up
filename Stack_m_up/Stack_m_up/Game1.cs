@@ -134,6 +134,13 @@ namespace Stack_m_up
             audio.updateSfxVolume(perc);
         }
 
+        public void startGame( int playerAmount )
+        {
+            game = new GameManager( playerAmount );
+            game.Initialize();
+            game.LoadContent( Content );
+        }
+
 
     }
 }

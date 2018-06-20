@@ -17,9 +17,8 @@ namespace Stack_m_up
         GameManager game;
         AudioManager audio;
 
-        
-
-        
+        Texture2D background;
+        Rectangle mainFrame;
 
         public Game1()
         {
@@ -44,6 +43,9 @@ namespace Stack_m_up
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            background = Content.Load<Texture2D>("background");
+            mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             game.LoadContent( Content );
             audio.LoadContent( Content );
         }
@@ -64,6 +66,9 @@ namespace Stack_m_up
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, mainFrame, Color.White);
+            spriteBatch.End();
             game.Draw(gameTime, graphics, spriteBatch);
 
             base.Draw(gameTime);

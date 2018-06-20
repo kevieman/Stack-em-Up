@@ -57,7 +57,7 @@ namespace Stack_m_up
             soundEffects.Add(Content.Load<SoundEffect>("saveSettings"));
             startMenuMusic(1.0f);   // Start music full volume
 
-            game.LoadContent( Content );
+            game.LoadContent( Content ); 
         }
 
         void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)

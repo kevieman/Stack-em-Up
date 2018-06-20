@@ -30,12 +30,15 @@ namespace Stack_m_up
         List<DrawablePhysicsObject> crateList;
         DrawablePhysicsObject floor;
         KeyboardState prevKeyboardState;
-        MouseState prevMouseState;
         TouchCollection touch;
         Random random;
 
+        bool leftSideClicked = false, rightSideClicked = false;
+
         Vector2 mousePosition;
         SpriteFont font;
+
+        int leftX, midX, rightX;
 
         public PlayField( int amount, int place )
         {
@@ -49,6 +52,10 @@ namespace Stack_m_up
             var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             windowHeight = Convert.ToInt32(applicationView.VisibleBounds.Height);
             windowWidth = Convert.ToInt32(applicationView.VisibleBounds.Width);
+
+            leftX = windowWidth / amount * place;
+            midX = (windowWidth / amount * place) + windowWidth / amount / 2;
+            rightX = windowWidth / amount * (place + 1);
         }
 
         public void LoadContent(ContentManager content)
@@ -85,33 +92,21 @@ namespace Stack_m_up
             {
                 windowHeight = Convert.ToInt32(applicationView.VisibleBounds.Height);
                 windowWidth = Convert.ToInt32(applicationView.VisibleBounds.Width);
+                leftX = windowWidth / amount * place;
+                midX = (windowWidth / amount * place) + windowWidth / amount / 2;
+                rightX = windowWidth / amount * (place + 1);
 
-                createView((windowWidth / amount) * place, 0, windowHeight, windowWidth / amount);
+                createView(leftX, 0, windowHeight, windowWidth / amount);
             }
-
-
+            
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
+            rightSideClicked = false;
+            leftSideClicked = false;
+
             MouseState mouseState = Mouse.GetState();
-            if (mouseState.LeftButton != prevMouseState.LeftButton)
-            {
-                foreach (DrawablePhysicsObject obj in crateList)
-                {
-
-                    int clickPosition = Convert.ToInt32(mouseState.Position.ToVector2().X);
-
-                    if (clickPosition < (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition > windowWidth / amount * (place)) {
-                        currentBlock.Position = new Vector2( currentBlock.Position.X - 2, currentBlock.Position.Y );
-                    }
-                    if (clickPosition > (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition < windowWidth / amount * (place + 1))
-                    {
-                        currentBlock.Position = new Vector2(currentBlock.Position.X + 2, currentBlock.Position.Y);
-                    }
-
-                }
-
-            }
-            prevMouseState = mouseState;
+            if( mouseState.LeftButton == ButtonState.Pressed )
+                viewportClicked(Convert.ToInt32(mouseState.Position.ToVector2().X), Convert.ToInt32(mouseState.Position.ToVector2().Y) );
 
             touch = TouchPanel.GetState();
             foreach (TouchLocation tl in touch)
@@ -119,27 +114,37 @@ namespace Stack_m_up
                 if ((tl.State == TouchLocationState.Pressed)
                         || (tl.State == TouchLocationState.Moved))
                 {
-                    foreach (DrawablePhysicsObject obj in crateList)
-                    {
-                        int clickPosition = Convert.ToInt32(tl.Position.X);
-                        if (clickPosition < (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition > windowWidth / amount * (place))
-                        {
-                            currentBlock.Position = new Vector2(currentBlock.Position.X - 2, currentBlock.Position.Y);
-                        }
-                        if (clickPosition > (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition < windowWidth / amount * (place + 1))
-                        {
-                            currentBlock.Position = new Vector2(currentBlock.Position.X + 2, currentBlock.Position.Y);
-                        }
-                    }
+                    viewportClicked( Convert.ToInt32(tl.Position.X), Convert.ToInt32( tl.Position.Y ) );
                 }
             }
+
+            if (crateList.Count > 0)
+            {
+                if (leftSideClicked && !rightSideClicked)
+                {
+                    if (currentBlock.body.ContactList == null && currentBlock.Position.X - currentBlock.Size.X / 2 > 0)
+                        currentBlock.Position += new Vector2(-1, 0);
+                    Debug.WriteLine( currentBlock.Position.X );
+                }
+                else if (rightSideClicked && !leftSideClicked)
+                {
+                    if (currentBlock.body.ContactList == null && currentBlock.Position.X + currentBlock.Size.X / 2 < windowWidth / amount)
+                        currentBlock.Position += new Vector2(1, 0);
+                    Debug.WriteLine( "right" );
+                }
+                else if (rightSideClicked && leftSideClicked)
+                {
+                    currentBlock.body.Rotation += 5;
+                }
+            }
+                
 
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Space) && !prevKeyboardState.IsKeyDown(Keys.Space))
             {
                 SpawnBlock(rand);
             }
-
+            
             prevKeyboardState = keyboardState;
         }
 
@@ -194,6 +199,19 @@ namespace Stack_m_up
 
             currentBlock = obj;
             crateList.Add(obj);
+        }
+
+        private void viewportClicked( int x, int y )
+        {
+
+            if (x > leftX && x < midX)
+            {
+                leftSideClicked = true;
+            }
+            if (x < rightX && x > midX)
+            {
+                rightSideClicked = true;
+            }
         }
 
     }

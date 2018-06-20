@@ -288,6 +288,11 @@
             <TextBlock x:Name="SFX_Volume_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="SFX Volume" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
             <Slider x:Name="SFX_Volume_Slider" Visibility="Collapsed" Grid.Column="3" Grid.Row="4" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" ValueChanged="changeSfxVolume"/>
 
+            <TextBlock x:Name="Player_Amount_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Players" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
+            <Slider x:Name="Player_Amount_Slider" Maximum="4" Visibility="Collapsed"  Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" ValueChanged="changeMasterVolume"/>
+
+            <TextBlock x:Name="Object_Set_Text" Visibility="Collapsed" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Object set" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FontFamily="Trebuchet MS"/>
+            <Slider x:Name="Object_Set_Slider" Visibility="Collapsed"  Grid.Column="3" Grid.Row="3" VerticalAlignment="Bottom" Width="AUTO" Height="AUTO" Foreground="#FF80BCEB" FocusVisualPrimaryBrush="Black"  Style="{StaticResource CustomSliderStyle}" ValueChanged="changeMasterVolume"/>
 
             <Image x:Name="Logo" Grid.Column="3" Grid.Row="1" Height="AUTO" Width="AUTO" Source="Assets/StackMUp.png"/>
 

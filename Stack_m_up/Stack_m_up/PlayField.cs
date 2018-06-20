@@ -17,6 +17,7 @@ namespace Stack_m_up
         int amount, place;
 
         World world;
+        DrawablePhysicsObject currentBlock;
         
         Vector2 bodyPosition;
         Texture2D block;
@@ -95,16 +96,27 @@ namespace Stack_m_up
             {
                 foreach (DrawablePhysicsObject obj in crateList)
                 {
-                    // TODO: only check inside this viewport ( between the windowWidth * place and windowWidth * (place + 1) )
-                    if( (mouseState.Position.ToVector2().X >= obj.Position.X && mouseState.Position.ToVector2().X <= (obj.Position.X + obj.Size.X)) &&
-                        (mouseState.Position.ToVector2().Y >= obj.Position.Y && mouseState.Position.ToVector2().Y <= (obj.Position.Y + obj.Size.Y)))
-                    {
-                        Debug.WriteLine("clicked");
-                        if (obj.body.IgnoreGravity)
-                            obj.body.IgnoreGravity = false;
-                        else
-                            obj.body.IgnoreGravity = true; // makes the block slower
+                    //// TODO: only check inside this viewport ( between the windowWidth * place and windowWidth * (place + 1) )
+                    //if( (mouseState.Position.ToVector2().X >= obj.Position.X && mouseState.Position.ToVector2().X <= (obj.Position.X + obj.Size.X)) &&
+                    //    (mouseState.Position.ToVector2().Y >= obj.Position.Y && mouseState.Position.ToVector2().Y <= (obj.Position.Y + obj.Size.Y)))
+                    //{
+                    //    Debug.WriteLine("clicked");
+                    //    if (obj.body.IgnoreGravity)
+                    //        obj.body.IgnoreGravity = false;
+                    //    else
+                    //        obj.body.IgnoreGravity = true; // makes the block slower
+                    //}
+
+                    int clickPosition = Convert.ToInt32(mouseState.Position.ToVector2().X);
+
+                    if (clickPosition < (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition > windowWidth / amount * (place)) {
+                        currentBlock.Position = new Vector2( currentBlock.Position.X - 2, currentBlock.Position.Y );
                     }
+                    if (clickPosition > (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition < windowWidth / amount * (place + 1))
+                    {
+                        currentBlock.Position = new Vector2(currentBlock.Position.X + 2, currentBlock.Position.Y);
+                    }
+
                 }
 
             }
@@ -168,6 +180,7 @@ namespace Stack_m_up
             obj.body.Friction = 1;
             obj.body.Restitution = -0.2f;
 
+            currentBlock = obj;
             crateList.Add(obj);
         }
 

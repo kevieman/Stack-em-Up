@@ -33,6 +33,8 @@ namespace Stack_m_up
             var launchArguments = string.Empty;
             _game = MonoGame.Framework.XamlGame<Game1>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
 
+            Player_Amount_Slider.Value = 2;
+            Player_Amount_Slider.Minimum = 2;
             Main_Volume_Slider.Value = 100;
             Music_Volume_Slider.Value = 100;
             SFX_Volume_Slider.Value = 100;
@@ -48,6 +50,10 @@ namespace Stack_m_up
             Back_Button.Visibility = Visibility.Visible;
 
             Start_Survival_Button.Visibility = Visibility.Visible;
+            Player_Amount_Text.Visibility = Visibility.Visible;
+            Player_Amount_Slider.Visibility = Visibility.Visible;
+            Object_Set_Text.Visibility = Visibility.Visible;
+            Object_Set_Slider.Visibility = Visibility.Visible;
 
             _game.Click();
         }
@@ -92,6 +98,10 @@ namespace Stack_m_up
             SFX_Volume_Text.Visibility = Visibility.Collapsed;
 
             Start_Survival_Button.Visibility = Visibility.Collapsed;
+            Player_Amount_Text.Visibility = Visibility.Collapsed;
+            Player_Amount_Slider.Visibility = Visibility.Collapsed;
+            Object_Set_Text.Visibility = Visibility.Collapsed;
+            Object_Set_Slider.Visibility = Visibility.Collapsed;
 
             _game.Click();
         }
@@ -113,10 +123,14 @@ namespace Stack_m_up
             SFX_Volume_Text.Visibility = Visibility.Collapsed;
 
             Start_Survival_Button.Visibility = Visibility.Collapsed;
+            Player_Amount_Text.Visibility = Visibility.Collapsed;
+            Player_Amount_Slider.Visibility = Visibility.Collapsed;
+            Object_Set_Text.Visibility = Visibility.Collapsed;
+            Object_Set_Slider.Visibility = Visibility.Collapsed;
 
             Background.Visibility = Visibility.Collapsed;
             Logo.Visibility = Visibility.Collapsed;
-
+            
             _game.Click();
             // Start game
         }

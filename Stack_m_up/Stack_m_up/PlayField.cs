@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,6 +31,7 @@ namespace Stack_m_up
         DrawablePhysicsObject floor;
         KeyboardState prevKeyboardState;
         MouseState prevMouseState;
+        TouchCollection touch;
         Random random;
 
         Vector2 mousePosition;
@@ -91,21 +93,10 @@ namespace Stack_m_up
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             MouseState mouseState = Mouse.GetState();
-            mousePosition = mouseState.Position.ToVector2();
             if (mouseState.LeftButton != prevMouseState.LeftButton)
             {
                 foreach (DrawablePhysicsObject obj in crateList)
                 {
-                    //// TODO: only check inside this viewport ( between the windowWidth * place and windowWidth * (place + 1) )
-                    //if( (mouseState.Position.ToVector2().X >= obj.Position.X && mouseState.Position.ToVector2().X <= (obj.Position.X + obj.Size.X)) &&
-                    //    (mouseState.Position.ToVector2().Y >= obj.Position.Y && mouseState.Position.ToVector2().Y <= (obj.Position.Y + obj.Size.Y)))
-                    //{
-                    //    Debug.WriteLine("clicked");
-                    //    if (obj.body.IgnoreGravity)
-                    //        obj.body.IgnoreGravity = false;
-                    //    else
-                    //        obj.body.IgnoreGravity = true; // makes the block slower
-                    //}
 
                     int clickPosition = Convert.ToInt32(mouseState.Position.ToVector2().X);
 
@@ -121,6 +112,27 @@ namespace Stack_m_up
 
             }
             prevMouseState = mouseState;
+
+            touch = TouchPanel.GetState();
+            foreach (TouchLocation tl in touch)
+            {
+                if ((tl.State == TouchLocationState.Pressed)
+                        || (tl.State == TouchLocationState.Moved))
+                {
+                    foreach (DrawablePhysicsObject obj in crateList)
+                    {
+                        int clickPosition = Convert.ToInt32(tl.Position.X);
+                        if (clickPosition < (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition > windowWidth / amount * (place))
+                        {
+                            currentBlock.Position = new Vector2(currentBlock.Position.X - 2, currentBlock.Position.Y);
+                        }
+                        if (clickPosition > (windowWidth / amount * (place + 1) - (windowWidth / amount / 2)) && clickPosition < windowWidth / amount * (place + 1))
+                        {
+                            currentBlock.Position = new Vector2(currentBlock.Position.X + 2, currentBlock.Position.Y);
+                        }
+                    }
+                }
+            }
 
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Space) && !prevKeyboardState.IsKeyDown(Keys.Space))

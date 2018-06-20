@@ -34,11 +34,7 @@ namespace Stack_m_up
             MediaPlayer.IsRepeating = true;
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
 
-            // Adding all the sound effects here
-            soundEffects.Add(Content.Load<SoundEffect>("buttonClick"));
-            soundEffects.Add(Content.Load<SoundEffect>("collisionBlock"));
-            soundEffects.Add(Content.Load<SoundEffect>("saveSettings"));
-            startMenuMusic(1.0f);   // Start music full volume
+            
 
 
         }
@@ -46,6 +42,11 @@ namespace Stack_m_up
         public void LoadContent( ContentManager manager)
         {
             Content = manager;
+            // Adding all the sound effects here
+            soundEffects.Add(Content.Load<SoundEffect>("buttonClick"));
+            soundEffects.Add(Content.Load<SoundEffect>("collisionBlock"));
+            soundEffects.Add(Content.Load<SoundEffect>("saveSettings"));
+            startMenuMusic(1.0f);   // Start music full volume
         }
 
 

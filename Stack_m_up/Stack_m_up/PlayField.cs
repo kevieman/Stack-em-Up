@@ -20,6 +20,8 @@ namespace Stack_m_up
 
         Body body;
         Texture2D block;
+        Texture2D block2;
+
         const float unitToPixel = 100.0f;
         const float pixelToUnit = 1 / unitToPixel;
         
@@ -57,7 +59,8 @@ namespace Stack_m_up
             body.BodyType = BodyType.Dynamic;
             body.Position = new Vector2((view.Width / 2.0f) * pixelToUnit, 0);
 
-            block = content.Load<Texture2D>("logo");
+            block = content.Load<Texture2D>("Block4");
+            block2 = content.Load<Texture2D>("Block2");
 
             random = new Random(place);
 
@@ -155,7 +158,14 @@ namespace Stack_m_up
         private void SpawnBlock()
         {
             DrawablePhysicsObject obj;
-            obj = new DrawablePhysicsObject(world, block, new Vector2(50.0f, 50.0f), 0.1f);
+            if(random.Next(0, 2) == 0)
+            {
+                obj = new DrawablePhysicsObject(world, block, new Vector2(50.0f, 50.0f), 0.1f);
+            }
+            else
+            {
+                obj = new DrawablePhysicsObject(world, block2, new Vector2(125.0f, 25.0f), 0.1f);
+            }
             obj.Position = new Vector2(random.Next(50, view.Width - 50), 1);
 
             crateList.Add(obj);

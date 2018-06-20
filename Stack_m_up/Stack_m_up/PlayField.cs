@@ -65,8 +65,8 @@ namespace Stack_m_up
 
             random = new Random(place);
 
-            floor = new DrawablePhysicsObject(world, content.Load<Texture2D>("Platform"), new Vector2(view.Width, 65.0f), 500);
-            floor.Position = new Vector2(view.Width - (view.Width / 4.5f), view.Height + 20);
+            floor = new DrawablePhysicsObject(world, content.Load<Texture2D>("Platform"), new Vector2((view.Width - 100.0f), 65.0f), 500);
+            floor.Position = new Vector2(view.Width - (view.Width / 2.0f), view.Height - 50);
             floor.body.BodyType = BodyType.Static;
             crateList = new List<DrawablePhysicsObject>();
             prevKeyboardState = Keyboard.GetState();

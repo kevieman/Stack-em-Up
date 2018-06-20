@@ -134,7 +134,7 @@ namespace Stack_m_up
                 }
                 else if (rightSideClicked && leftSideClicked)
                 {
-                    currentBlock.body.Rotation += 1;
+                    currentBlock.body.Rotation += 0.05f;
                 }
             }
         }
@@ -155,7 +155,6 @@ namespace Stack_m_up
             }
 
             floor.Draw(spriteBatch);
-            spriteBatch.DrawString(font, mousePosition.ToString(), new Vector2(10, windowHeight - 20), Color.Black);
             
             spriteBatch.End();
 

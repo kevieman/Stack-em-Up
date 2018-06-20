@@ -17,8 +17,8 @@ namespace Stack_m_up
         int amount, place;
 
         World world;
-
-        Body body;
+        
+        Vector2 bodyPosition;
         Texture2D block;
         Texture2D block2;
 
@@ -55,9 +55,7 @@ namespace Stack_m_up
             world = new World(new Vector2(0, 0.5f));
 
             Vector2 size = new Vector2(50, 50);
-            body = BodyFactory.CreateRectangle(world, size.X * pixelToUnit, size.Y * pixelToUnit, 1);
-            body.BodyType = BodyType.Dynamic;
-            body.Position = new Vector2((view.Width / 2.0f) * pixelToUnit, 0);
+            bodyPosition = new Vector2((view.Width / 2.0f) * pixelToUnit, 0);
 
             block = content.Load<Texture2D>("Block4");
             block2 = content.Load<Texture2D>("Block2");
@@ -128,7 +126,7 @@ namespace Stack_m_up
             graphics.GraphicsDevice.Viewport = view;
             spriteBatch.Begin();
 
-            Vector2 position = body.Position * unitToPixel;
+            Vector2 position = bodyPosition * unitToPixel;
             Vector2 scale = new Vector2(50 / (float)block.Width, 50 / (float)block.Height);
 
             foreach (DrawablePhysicsObject crate in crateList)

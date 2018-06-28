@@ -31,10 +31,10 @@ namespace Stack_m_up
         
         protected override void Initialize()
         {
-            game.Initialize();
-            this.IsMouseVisible = true;
-            base.Initialize();
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+
+            game.Initialize();
+            base.Initialize();
         }
         
         //Load content and set the background for the game
@@ -47,12 +47,12 @@ namespace Stack_m_up
 
             game.LoadContent( Content );
             AudioManager.LoadContent( Content );
+            base.LoadContent();
         }
         
         protected override void Update(GameTime gameTime)
         {
             game.Update(gameTime);
-
             base.Update(gameTime);
         }
         
@@ -62,8 +62,8 @@ namespace Stack_m_up
             spriteBatch.Begin();
             spriteBatch.Draw(background, mainFrame, Color.White);
             spriteBatch.End();
-            game.Draw(gameTime, graphics, spriteBatch);
 
+            game.Draw(gameTime, graphics, spriteBatch);
             base.Draw(gameTime);
         }
 

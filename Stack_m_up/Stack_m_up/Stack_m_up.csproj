@@ -108,8 +108,13 @@
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Game1.cs" />
+    <Compile Include="IObject.cs" />
+    <Compile Include="IPhysicsObject.cs" />
+    <Compile Include="PlatformObject.cs" />
     <Compile Include="PlayField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TetrisObject.cs" />
+    <Compile Include="TetrisSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />

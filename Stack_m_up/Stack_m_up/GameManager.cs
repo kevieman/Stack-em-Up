@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections;
-using System.Threading;
 
 namespace Stack_m_up
 {
@@ -20,36 +19,37 @@ namespace Stack_m_up
         Boolean gameStarted = false;
         float countdown = 10;
 
-        int leftX, midX, rightX;
-
         public GameManager( int playFieldAmount )
         {
             this.playFieldAmount = playFieldAmount;
-            playfields = new ArrayList();
-
-            playfields.Clear();
-
-            for (int i = 0; i < playFieldAmount; ++i)
-            {
-                PlayField playfield = new PlayField(playFieldAmount, i);
-                playfields.Add(playfield);
-            }
         }
         
         public void Initialize()
         {
+            TetrisSet.Initialize();
+
             var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             windowHeight = Convert.ToInt32(applicationView.VisibleBounds.Height);
             windowWidth = Convert.ToInt32(applicationView.VisibleBounds.Width);
 
-            foreach (PlayField playfield in playfields)
+            playfields = new ArrayList();
+
+            for (int i = 0; i < playFieldAmount; ++i)
             {
-                playfield.Initialize();
+                Vector2 position = new Vector2(windowWidth / playFieldAmount * i, 0);
+                Vector2 size = new Vector2(windowWidth / playFieldAmount, windowHeight);
+
+                PlayField playfield = new PlayField();
+                playfield.Initialize(position, size);
+
+                playfields.Add(playfield);
             }
         }
 
         public void LoadContent( ContentManager content )
         {
+            TetrisSet.LoadContent(content);
+
             font = content.Load<SpriteFont>("font");
 
             foreach (PlayField playfield in playfields)

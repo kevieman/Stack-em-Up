@@ -55,7 +55,7 @@ namespace Stack_m_up
             Object_Set_Text.Visibility = Visibility.Visible;
             Object_Set_Slider.Visibility = Visibility.Visible;
 
-            AudioManager.Click();
+            AudioManager.PlaySound("click");
         }
 
         // Disables and enables all the UI elements for when Stettings button is clicked.
@@ -73,7 +73,7 @@ namespace Stack_m_up
             Music_Volume_Text.Visibility = Visibility.Visible;
             SFX_Volume_Text.Visibility = Visibility.Visible;
 
-            AudioManager.Click();
+            AudioManager.PlaySound("click");
         }
 
         // Disables and enables all the UI elements for when Back button is clicked.
@@ -102,7 +102,7 @@ namespace Stack_m_up
             Background.Visibility = Visibility.Visible;
             Logo.Visibility = Visibility.Visible;
 
-            AudioManager.Click();
+            AudioManager.PlaySound("click");
         }
 
         // Disables and enables all the UI elements for when Start_Survival_Click button is clicked.
@@ -131,7 +131,7 @@ namespace Stack_m_up
             Background.Visibility = Visibility.Collapsed;
             Logo.Visibility = Visibility.Collapsed;
 
-            AudioManager.Click();
+            AudioManager.PlaySound("click");
             _game.startGame( Convert.ToInt32(Player_Amount_Slider.Value) ); // Start game
         }
 
@@ -139,7 +139,7 @@ namespace Stack_m_up
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
-            AudioManager.Click();
+            AudioManager.PlaySound("click");
         }
 
         // Changes the master volume when the slider has been used.

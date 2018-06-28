@@ -11,12 +11,14 @@ namespace Stack_m_up
 {
     static class AudioManager
     {
-        static Song music;     // Variable that stores the song
+        static Song music;     // Variable that stores the song\
+        static List<Audio> audioList = new List<Audio>();
         static List<SoundEffect> soundEffects; // List where all the sound effects are stored
 
         static float masterVolume;  // Global maximum for all the volumes
         static float musicVolume;   // Global value for the music volume
         static float sfxVolume;     // Global value for the SFX volume
+        
 
         static AudioManager()
         {
@@ -24,6 +26,9 @@ namespace Stack_m_up
             masterVolume = 1.0f;    // Set base volume
             musicVolume = 1.0f;     // Set base volume
             sfxVolume = 1.0f;       // Set base volume
+
+            audioList.Add(new Audio("click", Audio.typeEnum.sfx, false, "buttonClick"));
+            audioList.Add(new Audio("music", Audio.typeEnum.music, false, "menu_music"));
 
             //  Uncomment the following line will also loop the song
             MediaPlayer.IsRepeating = true;
@@ -33,11 +38,18 @@ namespace Stack_m_up
 
         static public void LoadContent(ContentManager manager)
         {
-            // Adding all the sound effects here
-            soundEffects.Add(manager.Load<SoundEffect>("buttonClick"));
-            soundEffects.Add(manager.Load<SoundEffect>("collisionBlock"));
-            soundEffects.Add(manager.Load<SoundEffect>("saveSettings"));
-            music = manager.Load<Song>("menu_music");
+            // Add all the sounds to list
+            foreach (Audio a in audioList)
+            {
+                if (a.getType() == Audio.typeEnum.sfx)
+                {
+                    soundEffects.Add(manager.Load<SoundEffect>(a.getPath()));
+                }
+                else if (a.getType() == Audio.typeEnum.music)
+                {
+                    music = manager.Load<Song>(a.getPath());
+                }
+            }
         }
 
 
@@ -48,7 +60,8 @@ namespace Stack_m_up
             MediaPlayer.Play(music);
         }
 
-        static public void startMenuMusic(float volume)    // Start playing the music with a given volume settings
+        // Start playing the music with a given volume settings
+        static public void startMenuMusic(float volume)    
         {
             if (volume > 1.0f)
             {
@@ -69,77 +82,81 @@ namespace Stack_m_up
             MediaPlayer.Stop();
         }
 
-        static public void Click()     // Sound for clicking the buttons
+        static public void PlaySound(string soundName)
         {
-            // Play that can be manipulated after the fact
-            var instance = soundEffects[0].CreateInstance();
-            instance.IsLooped = false;
+            // Play a instance of a soundEffect
+            var instance = soundEffects[getAudioID(soundName)].CreateInstance();
+            instance.IsLooped = audioList[getAudioID(soundName)].isLoop();
             instance.Volume = sfxVolume * masterVolume;
             instance.Pitch = 1.0f;
             instance.Play();
         }
 
-        static public void settingsSave()      // Play the sound for saving the settings
+        // Returns the id of a Audio object in the audioList
+        static private int getAudioID(string soundName)
         {
-            // Fire and forget play
-            var instance = soundEffects[2].CreateInstance();
-            instance.IsLooped = false;
-            instance.Volume = sfxVolume;
-            instance.Play();
+            for (int i = 0; i < audioList.Count; i++)
+            {
+                if (audioList[i].getName() == soundName)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
-        static public void Collision()     // Play sound for colliding blocks
+        // Starts playing the slider click sound effect with given perc
+        static public void sliderClick(float perc)  
         {
-            // Fire and forget play
-            var instance = soundEffects[1].CreateInstance();
-            instance.IsLooped = false;
-            instance.Volume = sfxVolume;
-            instance.Play();
-        }
-
-        static public void sliderClick(float perc)
-        {
+            // Perc is percentage of volume
             float calcPitch = 2.0f;
             calcPitch = -1.0f + (calcPitch * perc);
 
-            var instance = soundEffects[0].CreateInstance();
+            var instance = soundEffects[getAudioID("click")].CreateInstance();
             instance.IsLooped = false;
             instance.Pitch = calcPitch;
             instance.Volume = sfxVolume * masterVolume;
             instance.Play();
         }
 
-        static public void sliderClickMusic(float perc)
+        // Starts playing the sound effect of the music slider with given perc
+        static public void sliderClickMusic(float perc) 
         {
+            // Perc is percentage of volume
             float calcPitch = 2.0f;
             calcPitch = -1.0f + (calcPitch * perc);
 
-            var instance = soundEffects[0].CreateInstance();
+            var instance = soundEffects[getAudioID("click")].CreateInstance();
             instance.IsLooped = false;
             instance.Pitch = calcPitch;
             instance.Volume = 0.2f;
             instance.Play();
         }
 
-        static public void updateMasterVolume(float perc)
+        // Updates the master volume to the give volume percentage
+        static public void updateMasterVolume(float perc)  
         {
             masterVolume = perc;
             setMusicVolume();
         }
 
-        static public void updateMusicVolume(float perc)
+        // Updates the music volume to the give volume percentage
+        static public void updateMusicVolume(float perc)   
         {
             musicVolume = perc;
             setMusicVolume();
         }
 
-        static public void updateSfxVolume(float perc)
+        // Updates the SFX volume to the give volume percentage
+        static public void updateSfxVolume(float perc)   
         {
             float calcVolume = (1.0f * perc);
             sfxVolume = calcVolume;
         }
 
-        static private void setMusicVolume()
+        // Method that is used by other methods for settings the music volume
+        static private void setMusicVolume()  
         {
             MediaPlayer.Volume = musicVolume * masterVolume;
         }

@@ -213,7 +213,7 @@ namespace Stack_m_up
             crateList.Add(obj);
         }
 
-        private bool hasLost()
+        public bool hasLost()
         {
             int counter = 0;
             foreach (DrawablePhysicsObject obj in crateList) {

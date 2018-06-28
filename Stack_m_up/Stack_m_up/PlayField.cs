@@ -23,6 +23,7 @@ namespace Stack_m_up
         Vector2 bodyPosition;
         Texture2D block;
         Texture2D block2;
+        Texture2D block3;
 
         const float unitToPixel = 100.0f;
         const float pixelToUnit = 1 / unitToPixel;
@@ -69,6 +70,7 @@ namespace Stack_m_up
 
             block = content.Load<Texture2D>("Block4");
             block2 = content.Load<Texture2D>("Block2");
+            block3 = content.Load<Texture2D>("Block6");
 
             random = new Random(place);
 
@@ -175,11 +177,15 @@ namespace Stack_m_up
             DrawablePhysicsObject obj;
             if(rand == 0)
             {
-                obj = new DrawablePhysicsObject(world, block, new Vector2(50.0f, 50.0f), 0.1f);
+                obj = new DrawablePhysicsObject(world, block, new Vector2(50.0f, 50.0f), 1.0f);
+            }
+            else if(rand == 1)
+            {
+                obj = new DrawablePhysicsObject(world, block2, new Vector2(125.0f, 25.0f), 1.0f);
             }
             else
             {
-                obj = new DrawablePhysicsObject(world, block2, new Vector2(125.0f, 25.0f), 0.1f);
+                obj = new DrawablePhysicsObject(world, block3, new Vector2(75.0f, 50.0f), 1.0f);
             }
             Random randomRotation = new Random();
             obj.Position = new Vector2(random.Next(50, view.Width - 50), 1);

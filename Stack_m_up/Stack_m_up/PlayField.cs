@@ -25,6 +25,7 @@ namespace Stack_m_up
         Texture2D block2;
         Texture2D block3;
         Texture2D greyOverlay;
+        Texture2D gameOver;
 
         const float unitToPixel = 100.0f;
         const float pixelToUnit = 1 / unitToPixel;
@@ -75,6 +76,7 @@ namespace Stack_m_up
             block2 = content.Load<Texture2D>("Block2");
             block3 = content.Load<Texture2D>("Block6");
             greyOverlay = content.Load<Texture2D>("grey_overlay");
+            gameOver = content.Load<Texture2D>("gameover_sprite");
 
             random = new Random(place);
 
@@ -166,7 +168,10 @@ namespace Stack_m_up
             if(hasLost())
             {
                 spriteBatch.Draw(greyOverlay, new Rectangle(new Point(0, 0), new Point(view.Width, view.Height)), Color.White);
+                spriteBatch.Draw(gameOver, new Rectangle(new Point((view.Width / 2) - 116, (view.Height / 2) - 15), new Point(234, 30)), Color.White);
             }
+
+            
 
             spriteBatch.End();
 

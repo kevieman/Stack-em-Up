@@ -39,21 +39,16 @@ namespace Stack_m_up
             base.Initialize();
         }
         
+        //Load content and set the background for the game
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            background = Content.Load<Texture2D>("background");
+            background = Content.Load<Texture2D>("background"); //Load background
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
             game.LoadContent( Content );
             audio.LoadContent( Content );
-        }
-
-        
-
-        protected override void UnloadContent()
-        {
         }
         
         protected override void Update(GameTime gameTime)

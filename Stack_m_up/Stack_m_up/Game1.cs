@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 
 using System.Collections.Generic;
+using Windows.UI.ViewManagement;
 
 namespace Stack_m_up
 {
@@ -35,6 +36,7 @@ namespace Stack_m_up
             game.Initialize();
             this.IsMouseVisible = true;
             base.Initialize();
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
         }
         
         //Load content and set the background for the game

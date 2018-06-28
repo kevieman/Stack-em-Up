@@ -45,7 +45,6 @@ namespace Stack_m_up
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
             Settings_Button.Visibility = Visibility.Collapsed;
-            Credits_Button.Visibility = Visibility.Collapsed;
             Quit_Button.Visibility = Visibility.Collapsed;
 
             Back_Button.Visibility = Visibility.Visible;
@@ -64,7 +63,6 @@ namespace Stack_m_up
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
             Settings_Button.Visibility = Visibility.Collapsed;
-            Credits_Button.Visibility = Visibility.Collapsed;
             Quit_Button.Visibility = Visibility.Collapsed;
 
             Back_Button.Visibility = Visibility.Visible;
@@ -78,17 +76,11 @@ namespace Stack_m_up
             AudioManager.Click();
         }
 
-        private void Credits_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         // Disables and enables all the UI elements for when Back button is clicked.
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             StartGame_Button.Visibility = Visibility.Visible;
             Settings_Button.Visibility = Visibility.Visible;
-            Credits_Button.Visibility = Visibility.Visible;
             Quit_Button.Visibility = Visibility.Visible;
 
             Back_Button.Visibility = Visibility.Collapsed;
@@ -118,7 +110,6 @@ namespace Stack_m_up
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
             Settings_Button.Visibility = Visibility.Collapsed;
-            Credits_Button.Visibility = Visibility.Collapsed;
             Quit_Button.Visibility = Visibility.Collapsed;
 
             Back_Button.Visibility = Visibility.Collapsed;

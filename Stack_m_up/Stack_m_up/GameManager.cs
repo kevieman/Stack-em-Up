@@ -17,6 +17,8 @@ namespace Stack_m_up
         Random random = new Random();
         const float delay = 10;
         float remainingdelay = delay;
+        Boolean gameStarted = false;
+        float countdown = 10;
 
         int leftX, midX, rightX;
 
@@ -84,10 +86,24 @@ namespace Stack_m_up
                 playfield.Draw(gameTime, graphics, spriteBatch);
             }
             spriteBatch.Begin();
+            if (gameStarted == false)
+            {
+                var startTimer = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                countdown -= startTimer;
 
-            int countdown = 1;
-            spriteBatch.DrawString(font, "" + countdown, new Vector2(windowWidth/2, 100), Color.Black);
-
+                if ((int)countdown/2 > 0)
+                {
+                    spriteBatch.DrawString(font, "" + (int)countdown/2, new Vector2(windowWidth / 2, 100), Color.Black);
+                }
+                if ((int)countdown/2 == 0)
+                {
+                    spriteBatch.DrawString(font, "GO!", new Vector2(windowWidth / 2, 100), Color.Black);
+                }
+                if (countdown/2 < 0) {
+                    spriteBatch.DrawString(font, "", new Vector2(windowWidth / 2, 100), Color.Black);
+                    gameStarted = true;
+                }
+            }
             spriteBatch.End();
         }
 
@@ -99,6 +115,8 @@ namespace Stack_m_up
                 playfield.AddBlock(rand);
             }
         }
+
+
 
     }
 }

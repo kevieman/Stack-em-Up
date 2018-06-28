@@ -124,13 +124,11 @@ namespace Stack_m_up
                 {
                     if (currentBlock.body.ContactList == null && currentBlock.Position.X - currentBlock.Size.X / 2 > 0)
                         currentBlock.Position += new Vector2(-1, 0);
-                    Debug.WriteLine( currentBlock.Position.X );
                 }
                 else if (rightSideClicked && !leftSideClicked)
                 {
                     if (currentBlock.body.ContactList == null && currentBlock.Position.X + currentBlock.Size.X / 2 < windowWidth / amount)
                         currentBlock.Position += new Vector2(1, 0);
-                    Debug.WriteLine( "right" );
                 }
                 else if (rightSideClicked && leftSideClicked)
                 {

@@ -40,7 +40,7 @@ namespace Stack_m_up
             SFX_Volume_Slider.Value = 100;
         }
 
-        private void Start_Game_Click(object sender, RoutedEventArgs e)
+        private void Start_Game_Click(object sender, RoutedEventArgs e) 
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
             Settings_Button.Visibility = Visibility.Collapsed;
@@ -89,6 +89,7 @@ namespace Stack_m_up
             Quit_Button.Visibility = Visibility.Visible;
 
             Back_Button.Visibility = Visibility.Collapsed;
+            Back_Button2.Visibility = Visibility.Collapsed;
 
             Main_Volume_Slider.Visibility = Visibility.Collapsed;
             Music_Volume_Slider.Visibility = Visibility.Collapsed;
@@ -103,6 +104,9 @@ namespace Stack_m_up
             Object_Set_Text.Visibility = Visibility.Collapsed;
             Object_Set_Slider.Visibility = Visibility.Collapsed;
 
+            Background.Visibility = Visibility.Visible;
+            Logo.Visibility = Visibility.Visible;
+
             _game.Click();
         }
 
@@ -114,6 +118,7 @@ namespace Stack_m_up
             Quit_Button.Visibility = Visibility.Collapsed;
 
             Back_Button.Visibility = Visibility.Collapsed;
+            Back_Button2.Visibility = Visibility.Visible;
 
             Main_Volume_Slider.Visibility = Visibility.Collapsed;
             Music_Volume_Slider.Visibility = Visibility.Collapsed;

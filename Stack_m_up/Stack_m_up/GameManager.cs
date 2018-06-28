@@ -64,6 +64,16 @@ namespace Stack_m_up
 
         public void Update(GameTime gameTime)
         {
+            int counter = 0;
+            foreach (PlayField pf in playfields)
+            {
+                if (pf.hasLost())
+                    counter++;
+            }
+
+            if (counter >= playFieldAmount - 1)
+                return;
+
             var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
             remainingdelay -= timer;
             if (remainingdelay <= 0)

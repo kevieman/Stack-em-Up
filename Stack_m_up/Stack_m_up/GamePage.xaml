@@ -317,7 +317,11 @@
             </Button>
 
             <Button x:Name="Back_Button" Visibility="Collapsed"  Grid.Column="1" Grid.Row="4" Height="AUTO" Width="AUTO" Click="Back_Click" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Center" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
-                <Image x:Name="Quit1" Height="AUTO" Width="AUTO" Source="Assets/mockup_Back.png"/>
+                <Image x:Name="Back" Height="AUTO" Width="AUTO" Source="Assets/mockup_Back.png"/>
+            </Button>
+
+            <Button x:Name="Back_Button2" Visibility="Collapsed"  Grid.Column="1" Grid.Row="1" Height="AUTO" Width="AUTO" Click="Back_Click" Background="{x:Null}" Foreground="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="{x:Null}" Style="{StaticResource CustomButton}">
+                <Image x:Name="Back2" Height="AUTO" Width="200" Source="Assets/mockup_Back.png"/>
             </Button>
         </Grid>
     </SwapChainPanel>

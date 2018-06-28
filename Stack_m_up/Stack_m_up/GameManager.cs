@@ -77,10 +77,10 @@ namespace Stack_m_up
 
         private void AddBlock()
         {
-            int rand = random.Next(0, 2);
+            int rand = random.Next(0, 3);
             foreach (PlayField playfield in playfields)
             {
-                playfield.AddBlock( rand );
+                playfield.AddBlock(rand);
             }
         }
 

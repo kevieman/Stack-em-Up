@@ -72,7 +72,17 @@ namespace Stack_m_up
             }
 
             if (counter >= playFieldAmount - 1)
+            {
+                foreach (PlayField pf in playfields)
+                {
+                    if (!pf.hasLost())
+                    {
+                        pf.winner();
+                    }
+                }
                 return;
+            }
+                
 
             var timer = (float)gameTime.ElapsedGameTime.TotalSeconds;
             remainingdelay -= timer;

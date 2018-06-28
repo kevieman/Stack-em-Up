@@ -26,6 +26,8 @@ namespace Stack_m_up
         Texture2D block3;
         Texture2D greyOverlay;
         Texture2D gameOver;
+        Texture2D winnerScreen;
+        Texture2D winnerOverlay;
 
         const float unitToPixel = 100.0f;
         const float pixelToUnit = 1 / unitToPixel;
@@ -44,6 +46,7 @@ namespace Stack_m_up
         int leftX, midX, rightX;
 
         bool active = true;
+        bool hasWon = false;
 
         public PlayField( int amount, int place )
         {
@@ -77,6 +80,8 @@ namespace Stack_m_up
             block3 = content.Load<Texture2D>("Block6");
             greyOverlay = content.Load<Texture2D>("grey_overlay");
             gameOver = content.Load<Texture2D>("gameover_sprite");
+            winnerScreen = content.Load<Texture2D>("winner_Screen");
+            winnerOverlay = content.Load<Texture2D>("winner_overlay");
 
             random = new Random(place);
 
@@ -171,7 +176,11 @@ namespace Stack_m_up
                 spriteBatch.Draw(gameOver, new Rectangle(new Point((view.Width / 2) - 116, (view.Height / 2) - 15), new Point(234, 30)), Color.White);
             }
 
-            
+            if(hasWon)
+            {
+                spriteBatch.Draw(winnerOverlay, new Rectangle(new Point(0, 0), new Point(view.Width, view.Height)), Color.White);
+                spriteBatch.Draw(winnerScreen, new Rectangle(new Point((view.Width / 2) - 142, (view.Height / 2) - 98), new Point(284, 195)), Color.White);
+            }
 
             spriteBatch.End();
 
@@ -228,6 +237,11 @@ namespace Stack_m_up
             }
 
             return counter >= 3;
+        }
+
+        public void winner()
+        {
+            hasWon = true;
         }
 
         private void viewportClicked( int x, int y )

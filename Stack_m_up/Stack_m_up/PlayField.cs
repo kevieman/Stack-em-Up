@@ -206,7 +206,7 @@ namespace Stack_m_up
             Debug.WriteLine( floor.Position.X + " " + floor.Size.X );
             obj.Position = new Vector2(random.Next(Convert.ToInt32(floor.Position.X - floor.Size.X / 2 + obj.Size.X / 2), Convert.ToInt32(floor.Position.X + floor.Size.X / 2 - obj.Size.X / 2)), 1);
             obj.body.Rotation = randomRotation.Next(0, 360);
-            obj.body.Friction = 1;
+            obj.body.Friction = 10;
             obj.body.Restitution = -0.2f;
 
             currentBlock = obj;

@@ -9,12 +9,16 @@ namespace Stack_m_up
 {
     class GameManager
     {
+        private SpriteFont font;
+
+        int windowWidth, windowHeight;
         ArrayList playfields;
         int playFieldAmount;
         Random random = new Random();
         const float delay = 10;
         float remainingdelay = delay;
 
+        int leftX, midX, rightX;
 
         public GameManager( int playFieldAmount )
         {
@@ -32,6 +36,10 @@ namespace Stack_m_up
         
         public void Initialize()
         {
+            var applicationView = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+            windowHeight = Convert.ToInt32(applicationView.VisibleBounds.Height);
+            windowWidth = Convert.ToInt32(applicationView.VisibleBounds.Width);
+
             foreach (PlayField playfield in playfields)
             {
                 playfield.Initialize();
@@ -40,6 +48,8 @@ namespace Stack_m_up
 
         public void LoadContent( ContentManager content )
         {
+            font = content.Load<SpriteFont>("font");
+
             foreach (PlayField playfield in playfields)
             {
                 playfield.LoadContent( content );
@@ -83,6 +93,12 @@ namespace Stack_m_up
             {
                 playfield.Draw(gameTime, graphics, spriteBatch);
             }
+            spriteBatch.Begin();
+
+            int countdown = 1;
+            spriteBatch.DrawString(font, "" + countdown, new Vector2(windowWidth/2, 100), Color.Black);
+
+            spriteBatch.End();
         }
 
         private void AddBlock()

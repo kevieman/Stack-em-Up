@@ -104,27 +104,27 @@ namespace Stack_m_up
             audio.Collision();
         }
 
-        public void sliderClick(float perc)
+        public void sliderClick(float perc)  // Clicking sound for sliders
         {
             audio.sliderClick(perc);
         }
 
-        public void sliderClickMusic(float perc)
+        public void sliderClickMusic(float perc)    // Clicking sound for music slider
         {
             audio.sliderClickMusic(perc);
         }
 
-        public void updateMasterVolume(float perc)
+        public void updateMasterVolume(float perc)    // Method for updating the mastervolume
         {
             audio.updateMasterVolume(perc);
         }
 
-        public void updateMusicVolume(float perc)
+        public void updateMusicVolume(float perc)    // Method for updating music volume
         {
             audio.updateMusicVolume(perc);
         }
 
-        public void updateSfxVolume(float perc)
+        public void updateSfxVolume(float perc)    // Method for updating SFX volume
         {
             audio.updateSfxVolume(perc);
         }

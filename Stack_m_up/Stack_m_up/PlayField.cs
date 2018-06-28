@@ -41,6 +41,8 @@ namespace Stack_m_up
 
         int leftX, midX, rightX;
 
+        bool active = true;
+
         public PlayField( int amount, int place )
         {
             this.amount = amount;
@@ -102,6 +104,9 @@ namespace Stack_m_up
             }
             
             world.Step((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+            if (hasLost())
+                return;
 
             rightSideClicked = false;
             leftSideClicked = false;
@@ -174,6 +179,9 @@ namespace Stack_m_up
 
         public void AddBlock(int rand)
         {
+            if (hasLost())
+                return;
+
             DrawablePhysicsObject obj;
             if(rand == 0)
             {
@@ -195,6 +203,18 @@ namespace Stack_m_up
 
             currentBlock = obj;
             crateList.Add(obj);
+        }
+
+        private bool hasLost()
+        {
+            int counter = 0;
+            foreach (DrawablePhysicsObject obj in crateList) {
+                if (obj.Position.Y >= floor.Position.Y) {
+                    counter++;
+                }
+            }
+
+            return counter >= 3;
         }
 
         private void viewportClicked( int x, int y )

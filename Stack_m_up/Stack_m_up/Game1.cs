@@ -16,7 +16,6 @@ namespace Stack_m_up
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameManager game;
-        AudioManager audio;
 
         Texture2D background;
         Rectangle mainFrame;
@@ -26,7 +25,6 @@ namespace Stack_m_up
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             game = new GameManager( 4 );
-            audio = new AudioManager();
 
             IsMouseVisible = true;
         }
@@ -48,7 +46,7 @@ namespace Stack_m_up
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
             game.LoadContent( Content );
-            audio.LoadContent( Content );
+            AudioManager.LoadContent( Content );
         }
         
         protected override void Update(GameTime gameTime)
@@ -67,66 +65,6 @@ namespace Stack_m_up
             game.Draw(gameTime, graphics, spriteBatch);
 
             base.Draw(gameTime);
-        }
-
-        public void startMenuMusic()    // Start playing the music
-        {
-            audio.startMenuMusic();
-        }
-
-        public void startMenuMusic(float volume)    // Start playing the music with a given volume settings
-        {
-            audio.startMenuMusic(volume);
-        }
-
-        public void stopMusic() // Stop all music playing 
-        {
-            audio.stopMusic();
-        }
-
-        public void pauseMenuMusic()    // Pause the music (actually mutes it because pause doesn't work)
-        {
-            audio.pauseMenuMusic();
-        }
-
-        public void Click()     // Sound for clicking the buttons
-        {
-            audio.Click();
-        }
-
-        public void settingsSave()      // Play the sound for saving the settings
-        {
-            audio.settingsSave();
-        }
-
-        public void Collision()     // Play sound for colliding blocks
-        {
-            audio.Collision();
-        }
-
-        public void sliderClick(float perc)  // Clicking sound for sliders
-        {
-            audio.sliderClick(perc);
-        }
-
-        public void sliderClickMusic(float perc)    // Clicking sound for music slider
-        {
-            audio.sliderClickMusic(perc);
-        }
-
-        public void updateMasterVolume(float perc)    // Method for updating the mastervolume
-        {
-            audio.updateMasterVolume(perc);
-        }
-
-        public void updateMusicVolume(float perc)    // Method for updating music volume
-        {
-            audio.updateMusicVolume(perc);
-        }
-
-        public void updateSfxVolume(float perc)    // Method for updating SFX volume
-        {
-            audio.updateSfxVolume(perc);
         }
 
         public void startGame( int playerAmount )

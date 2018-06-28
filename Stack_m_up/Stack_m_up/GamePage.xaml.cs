@@ -56,7 +56,7 @@ namespace Stack_m_up
             Object_Set_Text.Visibility = Visibility.Visible;
             Object_Set_Slider.Visibility = Visibility.Visible;
 
-            _game.Click();
+            AudioManager.Click();
         }
 
         // Disables and enables all the UI elements for when Stettings button is clicked.
@@ -75,7 +75,7 @@ namespace Stack_m_up
             Music_Volume_Text.Visibility = Visibility.Visible;
             SFX_Volume_Text.Visibility = Visibility.Visible;
 
-            _game.Click();
+            AudioManager.Click();
         }
 
         private void Credits_Click(object sender, RoutedEventArgs e)
@@ -110,7 +110,7 @@ namespace Stack_m_up
             Background.Visibility = Visibility.Visible;
             Logo.Visibility = Visibility.Visible;
 
-            _game.Click();
+            AudioManager.Click();
         }
 
         // Disables and enables all the UI elements for when Start_Survival_Click button is clicked.
@@ -139,8 +139,8 @@ namespace Stack_m_up
 
             Background.Visibility = Visibility.Collapsed;
             Logo.Visibility = Visibility.Collapsed;
-            
-            _game.Click();
+
+            AudioManager.Click();
             _game.startGame( Convert.ToInt32(Player_Amount_Slider.Value) ); // Start game
         }
 
@@ -148,23 +148,18 @@ namespace Stack_m_up
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
-            _game.Click();
-        }
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            
+            AudioManager.Click();
         }
 
         // Changes the master volume when the slider has been used.
         private void changeMasterVolume(object sender, RoutedEventArgs e)
         {
             float percentage = (float)(Main_Volume_Slider.Value / 100);
-            _game.updateMasterVolume(percentage);   // Update the master Volume
+            AudioManager.updateMasterVolume(percentage);   // Update the master Volume
             
             if(x == 2)
             {
-                _game.sliderClick(percentage);
+                AudioManager.sliderClick(percentage);
                 x = 0;
             } else
             {
@@ -176,11 +171,11 @@ namespace Stack_m_up
         private void changeSfxVolume(object sender, RoutedEventArgs e)
         {
             float percentage = (float)(SFX_Volume_Slider.Value / 100);
-            _game.updateSfxVolume(percentage);   // Update the SFX Volume
+            AudioManager.updateSfxVolume(percentage);   // Update the SFX Volume
 
             if (x == 2)
             {
-                _game.sliderClick(percentage);
+                AudioManager.sliderClick(percentage);
                 x = 0;
             }
             else
@@ -193,11 +188,11 @@ namespace Stack_m_up
         private void changeMusicVolume(object sender, RoutedEventArgs e)
         {
             float percentage = (float)(Music_Volume_Slider.Value / 100);
-            _game.updateMusicVolume(percentage);   // Update the music Volume
+            AudioManager.updateMusicVolume(percentage);   // Update the music Volume
 
             if (x == 2)
             {
-                _game.sliderClickMusic(percentage);
+                AudioManager.sliderClickMusic(percentage);
                 x = 0;
             }
             else

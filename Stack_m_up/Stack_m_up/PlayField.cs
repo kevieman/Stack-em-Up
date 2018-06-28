@@ -217,7 +217,6 @@ namespace Stack_m_up
                 obj = new DrawablePhysicsObject(world, block3, new Vector2(75.0f, 50.0f), 1.0f);
             }
             Random randomRotation = new Random();
-            Debug.WriteLine( floor.Position.X + " " + floor.Size.X );
             obj.Position = new Vector2(random.Next(Convert.ToInt32(floor.Position.X - floor.Size.X / 2 + obj.Size.X / 2), Convert.ToInt32(floor.Position.X + floor.Size.X / 2 - obj.Size.X / 2)), 1);
             obj.body.Rotation = randomRotation.Next(0, 360);
             obj.body.Friction = 10;

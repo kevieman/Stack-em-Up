@@ -28,8 +28,6 @@ namespace Stack_m_up
             audio = new AudioManager();
 
             IsMouseVisible = true;
-
-            
         }
         
         protected override void Initialize()

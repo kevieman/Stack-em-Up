@@ -40,6 +40,7 @@ namespace Stack_m_up
             SFX_Volume_Slider.Value = 100;
         }
 
+        // Disables and enables all the UI elements for when Start Game button is clicked.
         private void Start_Game_Click(object sender, RoutedEventArgs e) 
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
@@ -58,6 +59,7 @@ namespace Stack_m_up
             _game.Click();
         }
 
+        // Disables and enables all the UI elements for when Stettings button is clicked.
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
@@ -81,6 +83,7 @@ namespace Stack_m_up
 
         }
 
+        // Disables and enables all the UI elements for when Back button is clicked.
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             StartGame_Button.Visibility = Visibility.Visible;
@@ -110,6 +113,7 @@ namespace Stack_m_up
             _game.Click();
         }
 
+        // Disables and enables all the UI elements for when Start_Survival_Click button is clicked.
         private void Start_Survival_Click(object sender, RoutedEventArgs e)
         {
             StartGame_Button.Visibility = Visibility.Collapsed;
@@ -137,12 +141,10 @@ namespace Stack_m_up
             Logo.Visibility = Visibility.Collapsed;
             
             _game.Click();
-            _game.startGame( Convert.ToInt32(Player_Amount_Slider.Value) );
-            // Start game
+            _game.startGame( Convert.ToInt32(Player_Amount_Slider.Value) ); // Start game
         }
 
-
-
+        // Disables and enables all the UI elements for when Quit button is clicked.
         private void Quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
@@ -154,6 +156,7 @@ namespace Stack_m_up
             
         }
 
+        // Changes the master volume when the slider has been used.
         private void changeMasterVolume(object sender, RoutedEventArgs e)
         {
             float percentage = (float)(Main_Volume_Slider.Value / 100);
@@ -169,6 +172,7 @@ namespace Stack_m_up
             }
         }
 
+        // Changes the SFX volume when the slider has been used.
         private void changeSfxVolume(object sender, RoutedEventArgs e)
         {
             float percentage = (float)(SFX_Volume_Slider.Value / 100);
@@ -185,6 +189,7 @@ namespace Stack_m_up
             }
         }
 
+        // Changes the music volume when the slider has been used.
         private void changeMusicVolume(object sender, RoutedEventArgs e)
         {
             float percentage = (float)(Music_Volume_Slider.Value / 100);

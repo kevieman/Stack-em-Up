@@ -58,10 +58,6 @@ namespace Stack_m_up
             }
         }
 
-        public void UnloadContent()
-        {
-        }
-
         public void Update(GameTime gameTime)
         {
             int counter = 0;

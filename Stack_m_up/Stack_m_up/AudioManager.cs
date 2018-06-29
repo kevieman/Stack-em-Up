@@ -29,7 +29,6 @@ namespace Stack_m_up
             //  Uncomment the following line will also loop the song
             MediaPlayer.IsRepeating = true;
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-            
         }
 
         static public void LoadContent(ContentManager manager)

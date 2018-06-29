@@ -7,7 +7,7 @@ namespace Stack_m_up
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Controller : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -16,7 +16,7 @@ namespace Stack_m_up
         Texture2D background;
         Rectangle mainFrame;
 
-        public Game1()
+        public Controller()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
